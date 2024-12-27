@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-# Carregar os dados
 def load_data(file_path):
     """
     Carregar o arquivo CSV contendo dados de comércio exterior.
@@ -14,7 +13,6 @@ def load_data(file_path):
         print(f"Erro: O arquivo {file_path} não existe.")
         return None
 
-# Pré-processar os dados
 def preprocess_data(df):
     """
     Pré-processar os dados definindo a data como índice e ordenando.
@@ -24,7 +22,6 @@ def preprocess_data(df):
     df.sort_index(inplace=True)
     return df
 
-# Calcular o saldo comercial
 def calculate_trade_balance(df):
     """
     Calcular o saldo comercial (Exportações - Importações).
@@ -32,7 +29,6 @@ def calculate_trade_balance(df):
     df['TradeBalance'] = df['Exports'] - df['Imports']
     return df
 
-# Analisar os principais parceiros comerciais
 def analyze_top_partners(df, n=5):
     """
     Identificar os principais n parceiros comerciais com base no volume total de comércio.
@@ -41,7 +37,6 @@ def analyze_top_partners(df, n=5):
     top_partners = df.groupby('Country')['TotalTrade'].sum().sort_values(ascending=False).head(n)
     return top_partners
 
-# Visualizar tendências de comércio
 def visualize_trade_trends(df):
     """
     Criar um gráfico de linha mostrando as tendências de exportação e importação ao longo do tempo.
@@ -57,7 +52,6 @@ def visualize_trade_trends(df):
     plt.savefig('trade_trends.png')
     plt.close()
 
-# Visualizar o saldo comercial
 def visualize_trade_balance(df):
     """
     Criar um gráfico de barras mostrando o saldo comercial ao longo do tempo.
@@ -72,7 +66,6 @@ def visualize_trade_balance(df):
     plt.savefig('trade_balance.png')
     plt.close()
 
-# Analisar padrões sazonais
 def analyze_seasonal_patterns(df):
     """
     Analisar padrões sazonais nos dados de comércio.
@@ -81,7 +74,6 @@ def analyze_seasonal_patterns(df):
     monthly_avg = df.groupby('Month')[['Exports', 'Imports']].mean()
     return monthly_avg
 
-# Função principal de análise
 def analyze_trade_data(file_path):
     """
     Realizar uma análise abrangente dos dados de comércio.
